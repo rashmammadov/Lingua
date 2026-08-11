@@ -11,6 +11,8 @@ transition when you switch input sources.
 The current implementation recognizes English (`EN`), Russian (`RU`), and
 Azerbaijani (`AZ`) layouts.
 
+![Lingua animating between macOS keyboard layouts](docs/lingua-demo.gif)
+
 ## How it works
 
 ```text
