@@ -1,0 +1,42 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  firmware:
+    name: ESP32-C3 firmware
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PlatformIO
+        run: python -m pip install platformio==6.1.19
+
+      - name: Build firmware
+        run: pio run
+
+  macos-bridge:
+    name: macOS bridge
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Compile Swift bridge
+        run: |
+          mkdir -p .build
+          swiftc tools/input_language_bridge.swift \
+            -framework Cocoa -framework Carbon \
+            -framework CoreBluetooth \
+            -o .build/input-language-bridge
