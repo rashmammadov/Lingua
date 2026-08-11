@@ -9,6 +9,9 @@
 # macOS
 .DS_Store
 
+# Original camera footage used to produce documentation media
+VID_*.mp4
+
 # Locally compiled macOS bridge binaries
 .build/
 tools/input-language-bridge
